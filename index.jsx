@@ -81,13 +81,17 @@ export const render = ({ output }, dispatch) => {
       return "#4ade80";
     }
   };
-  document.addEventListener("click", startTimer);
-  document.addEventListener("dblclick", resetTimer);
+
   return (
     <div
       className={`container`}
+      id="pomodoro"
     >
-      <div className="timer-rect-container">
+      <div
+        className="timer-rect-container"
+        onClick={startTimer}
+        onDoubleClick={resetTimer}
+      >
         <svg className="timer-rect" width={width} height={height}>
           {/* Progress rounded rectangle */}
           <rect
@@ -150,7 +154,6 @@ export const className = `
     height: 100%;
     transition: transform 0.3s ease;
   }
-
   .timer-rect-container {
     position: relative;
     width: 110px;
@@ -159,13 +162,11 @@ export const className = `
     justify-content: center;
     align-items: center;
   }
-
   .timer-rect {
     position: absolute;
     top: 0;
     left: 0;
   }
-
   .timer-display {
     letter-spacing: 1px;
     z-index: 10;
