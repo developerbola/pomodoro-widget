@@ -81,11 +81,11 @@ export const render = ({ output }, dispatch) => {
       return "#4ade80";
     }
   };
+  document.addEventListener("click", startTimer);
+  document.addEventListener("dblclick", resetTimer);
   return (
     <div
       className={`container`}
-      onClick={startTimer}
-      onDoubleClick={resetTimer}
     >
       <div className="timer-rect-container">
         <svg className="timer-rect" width={width} height={height}>
