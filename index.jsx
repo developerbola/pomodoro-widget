@@ -70,7 +70,10 @@ export const render = ({ output }, dispatch) => {
 
   const getStrokeColor = () => {
     const progress = (dashOffset / perimeter) * 100;
-    if (progress < 33) {
+
+    if (window.vibeBG) {
+      return `rgb(${window.vibeBG})`;
+    } else if (progress < 33) {
       return "#f87171";
     } else if (progress < 66) {
       return "#facc15";
@@ -101,15 +104,15 @@ export const render = ({ output }, dispatch) => {
             strokeDasharray={perimeter}
             strokeDashoffset={dashOffset}
             style={{
-              transition: timerState.isRunning
-                ? "stroke-dashoffset 1s linear, stroke 0.5s ease"
-                : "stroke-dashoffset 0.5s ease, stroke 0.5s ease",
+              transition: "stroke-dashoffset 0.5s ease, stroke 0.5s ease",
             }}
           />
         </svg>
         <div
           className="timer-display"
-          style={{ opacity: `${timerState.isRunning ? "1" : "0.5"}` }}
+          style={{
+            opacity: `${timerState.isRunning ? "1" : "0.5"}`,
+          }}
         >
           {formatTime(timerState.minutes)}:{formatTime(timerState.seconds)}
         </div>
